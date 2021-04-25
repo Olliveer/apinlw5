@@ -6,7 +6,7 @@ class UserService {
   async create(email: string) {
     const usersReposiroty = getCustomRepository(UsersRepository);
 
-    const userExists = usersReposiroty.findOne({ email });
+    const userExists = await usersReposiroty.findOne({ email });
 
     if (userExists) {
       return userExists;
