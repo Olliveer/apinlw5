@@ -18,6 +18,18 @@ class UserService {
 
     return user;
   }
+
+  async findByEmail(email: string) {
+    const usersReposiroty = getCustomRepository(UsersRepository);
+
+    const user = await usersReposiroty.findOne({ email });
+
+    // if (!user) {
+    //   throw new Error('User not found');
+    // }
+
+    return user;
+  }
 }
 
 export default UserService;
