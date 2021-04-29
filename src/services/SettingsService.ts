@@ -45,6 +45,8 @@ class SettingsService {
         username,
       })
       .execute();
+
+    return settings;
   }
 }
 

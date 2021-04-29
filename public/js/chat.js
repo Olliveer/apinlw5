@@ -23,4 +23,26 @@ document.querySelector('#start_chat').addEventListener('click', (event) => {
       }
     });
   });
+
+  socket.on('client_list_all_messages', (messages) => {
+    const templateClient = document.getElementById('message-user-template').innerHTML;
+    const templateAdmin = document.getElementById('admin-template').innerHTML;
+
+    messages.forEach((message) => {
+      if (message.admin_id === null) {
+        const rendered = Mustache.render(templateClient, {
+          message: message.text,
+          email,
+        });
+
+        document.getElementById('message').innerHTML += rendered;
+      } else {
+        const rendered = Mustache.render(templateAdmin, {
+          message_admin: message.text,
+        });
+
+        document.getElementById('message').innerHTML += rendered;
+      }
+    });
+  });
 });
